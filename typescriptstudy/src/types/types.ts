@@ -1,8 +1,8 @@
 type HelloProps = {
-  name: string;       // 얘네는 Java에서의 feild처럼 느껴집니다.
+  name: string;     // 얘네는 Java에서의 field처럼 느껴집니다.
   age?: number;
-  fn?: () => void;    // 얘는 그러면 Java에서의 method처럼 보이면 좋겠네요.
-  fn2?: (msg: string) => void; // 얘는 매개변수로 string data를 받고 return 타입이 없네요.
+  fn?: () => void;   // 얘는 그러면 Java에서의 method처럼 보이면 좋겠네요.
+  fn2?: (msg: string) => void;  // 얘는 매개변수로 string dat를 받고 return 타입이 없네요.
 }
 
 export default HelloProps

@@ -1,16 +1,16 @@
 import { useState } from "react";
 
 function MyComponent2() {
-  const [name, setName] = useState({
+  const [ name, setName ] = useState({
     firstName : 'John',
-    lastName : 'Doe'
-  })
+    lastName: 'Doe'
+  });
 
   return (
-  <>
-    <h2>Hello {name.firstName} {name.lastName}</h2>
-  </>
-)
+    <>
+      <h2>Hello {name.firstName} {name.lastName}</h2>
+    </>
+  );
 }
 
-export default MyComponent2;
+export default MyComponent2

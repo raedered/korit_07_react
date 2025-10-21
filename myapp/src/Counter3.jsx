@@ -12,10 +12,10 @@ function Counter3() {
 
   return (
     <>
-      <p>Counter3 : {count}</p>
-      <button onClick={() => {
-        console.log('값이 바뀌었습니다');
-        setCount(preCount => preCount + 1)} }>증가</button>
+        <p>Counter3 : {count}</p>
+        <button onClick={() => {
+          console.log('값이 바뀌었습니다');
+          setCount(preCount => preCount + 1)} }>증가</button>
     </>
   );
 }

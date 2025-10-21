@@ -3,7 +3,7 @@ import useTitle from "./useTitle";
 
 function Counter4() {
 
-  const [count, setCount] = useState(0);
+  const [ count, setCount ] = useState(0);
   useTitle(`당신은 ${count} 번 클릭했습니다 !`);
 
   return(
@@ -13,7 +13,7 @@ function Counter4() {
       <br />
       <button onClick={() => setCount(prevCount => prevCount + 1)}>++</button>
     </>
-  )
+  );
 }
 
-export default Counter4;
+export default Counter4
