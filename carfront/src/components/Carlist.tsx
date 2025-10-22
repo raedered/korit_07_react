@@ -1,10 +1,11 @@
 // import { CarResponse } from "../types"; table 태그에서는 data.map() 때문에 필요하지만, x-data-grid 사용 이후로는 필요 없기 때문에 주석 처리 했습니다.
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getCars, deleteCar } from "../api/carapi";
-import { DataGrid, GridColDef, GridCellParams } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridCellParams, GridToolbar } from "@mui/x-data-grid";
 import { Snackbar } from "@mui/material";
 import { useState } from "react";
 import AddCar from "./AddCar";
+import EidtCar from "./EditCar";
 
 function Carlist() {
   const [ open, setOpen ] = useState(false);
@@ -31,6 +32,16 @@ function Carlist() {
     {field: 'registrationNumber', headerName: 'Reg.nr', width: 150},
     {field: 'modelYear', headerName: 'Model Year', width: 150},
     {field: 'price', headerName: 'Price', width: 150},
+    {
+      field: 'edit',
+      headerName: '',
+      width: 90,
+      sortable: false,
+      filterable: false,
+      disableColumnMenu: true,
+      renderCell : (params : GridCellParams) => 
+        <EidtCar cardata={params.row}/>
+    },
     {
       field: 'delete',
       headerName: '',
@@ -82,6 +93,7 @@ function Carlist() {
           rows={data}
           columns={columns}
           getRowId={row => row._links.self.href}
+          slots={{toolbar:GridToolbar}}
         />  
         <Snackbar 
           open={open}
@@ -89,6 +101,7 @@ function Carlist() {
           onClose={() => setOpen(false)}
           message='선택한 자동차 정보가 삭제되었습니다 🚓'
         />
+        
       </>
     )
   }

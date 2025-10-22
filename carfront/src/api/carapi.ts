@@ -1,3 +1,4 @@
+import { CarEntity } from './../types';
 import axios from "axios";
 import { CarResponse, Car } from "../types";
 
@@ -19,5 +20,14 @@ export const addCar = async (car: Car) : Promise<CarResponse> => {
     },
   });
 
+  return response.data;
+}
+
+export const updateCar = async (carEntity : CarEntity) : Promise<CarResponse> => {
+  const response = await axios.put(carEntity.url, carEntity.car, {
+    headers: {
+      'Content-Type' : 'application/json'
+    }
+  });
   return response.data;
 }
