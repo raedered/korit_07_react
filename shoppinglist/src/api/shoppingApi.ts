@@ -1,8 +1,19 @@
 import axios from "axios";
-import { ShoppingResponse } from "../types";
+import { Shopping } from "../types";
 
-export const getShoppings = async (): Promise<ShoppingResponse[]> => {
-  const response = await axios.get(`${import.meta.env.VITE_API_URL}/api`)
+const API_URL = `${import.meta.env.VITE_API_URL}/api/shopping`;
+console.log(API_URL)
 
-  return response.data._embedded.shoppings;
+export const getShoppings = async (): Promise<Shopping[]> => {
+  const response = await axios.get(API_URL, {
+    headers: {"Content-Type": "application/json"}
+  });
+  return response.data;
+}
+
+export const addShopping = async (shopping: Omit<Shopping, "id">): Promise<Shopping> => {
+  const response = await axios.post(API_URL, shopping, {
+    headers: { "Content-Type" : "application/json"}
+  })
+  return response.data;
 }

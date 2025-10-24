@@ -1,4 +1,5 @@
 export type ShoppingResponse = {
+  id : number;
   product : string;
   amount : number;
   _links: {
@@ -12,11 +13,7 @@ export type ShoppingResponse = {
 }
 
 export type Shopping = {
-  priduct : string;
+  id? : number;
+  product : string;
   amount : number;
-}
-
-export type ShoppingEntity = {
-  shopping : Shopping;
-  url: string;
 }

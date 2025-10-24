@@ -1,43 +1,25 @@
-import { Container } from '@mui/material'
-import {AppBar, Toolbar, Typography} from '@mui/material'
-import {List, ListItem, ListItemText } from '@mui/material';
-import './App.css'
-import { useState } from 'react';
-import AddItem from './AddItem';
+import {AppBar, Toolbar, Typography, Container, CssBaseline} from '@mui/material'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import Shoppinglist from './components/Shoppinglist';
 
-export type Item = {
-  product: string;
-  amount: string;
-}
+const queryClient = new QueryClient();
 
 function App() {
-  const [ items, setItems ] = useState<Item[]>([]);
-  const addItem = (item:Item) => {
-    setItems([item, ...items]);
-  }
 
   return (
-    <Container>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant='h6'>
-            쇼핑 리스트 Shopping List
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <AddItem addItem={addItem}/>
-      <List>
-        {
-          items.map((item, index) =>
-            <ListItem key={index} divider>
-              <ListItemText 
-                primary={item.product}
-                secondary={item.amount}/>
-            </ListItem>
-          )
-        }
-      </List>
-    </Container>
+      <Container>
+        <CssBaseline />
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant='h6'>
+              쇼핑 리스트 Shopping List
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <QueryClientProvider client={queryClient}>
+          <Shoppinglist />
+      </QueryClientProvider>
+      </Container>
   )
 }
 

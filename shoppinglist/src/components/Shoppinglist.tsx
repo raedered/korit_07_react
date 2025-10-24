@@ -1,12 +1,14 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getShoppings } from "../api/shoppingApi";
+import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
+import { Shopping } from "../types";
+import AddShopping from "./AddShopping";
 
 function Shoppinglist() {
-  const queryClient = useQueryClient();
-  const { data, error, isSuccess } = useQuery({
+  const { data, error, isSuccess } = useQuery<Shopping[], Error>({
     queryKey: ["shoppings"],
-    queryFn: getShoppings
-  })
+    queryFn: getShoppings,
+  });
 
   const columns: GridColDef[] = [
     {field: 'product', headerName: 'Product', width: 200},
@@ -23,8 +25,16 @@ function Shoppinglist() {
   else {
     return (
       <>
-      <DataGrid
+        <AddShopping />
+        <DataGrid 
+          rows={data}
+          columns={columns}
+          getRowId={(row) => row.id!}
+          slots={{toolbar:GridToolbar}}
+        />
       </>
     )
   }
 }
+
+export default Shoppinglist;
