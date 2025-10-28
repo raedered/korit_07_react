@@ -1,12 +1,16 @@
-import { Button, TextField, Dialog, DialogContent, DialogTitle } from "@mui/material";
+import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import { useState } from "react";
-import { Shopping } from "./types";
+import { Item } from "./App";
 
-function AddShopping() {
+type AddItemProps = {
+  addItem: (item: Item) => void;
+}
+
+function AddItem(props: AddItemProps) {
   const [ open, setOpen ] = useState(false);
-  const [ item, setItem ] = useState<Shopping>({
+  const [ item, setItem ] = useState<Item>({
     product: '',
-    amount: 0,
+    amount: '',
   });
 
   const handleOpen = () => {
@@ -18,7 +22,7 @@ function AddShopping() {
   }
 
   // App.tsx의 addItem 함수를 호출하고, item 상태를 전달
-  const handleSave = () => {
+  const addItem = () => {
     props.addItem(item);
     // TextField에 있는 내용을 다 지우고 Modal을 닫음
     setItem({product: '', amount: ''});
@@ -52,4 +56,4 @@ function AddShopping() {
   );
 }
 
-export default AddShopping;
+export default AddItem
